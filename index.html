@@ -11,14 +11,14 @@
 var main = function () {
   var scene = new THREE.Scene();
 
-  var width  = 600;
-  var height = 400;
+  var width  = 9 * 48;
+  var height = 16 * 48;
   var fov    = 60;
   var aspect = width / height;
   var near   = 1;
   var far    = 1000;
   var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-  camera.position.set( 0, 0, 50 );
+  camera.position.set( 0, 0, 500 );
 
   var renderer = new THREE.WebGLRenderer();
   renderer.setSize( width, height );
@@ -30,7 +30,9 @@ var main = function () {
 
   var texture  = new THREE.ImageUtils.loadTexture('./img/3030127000_01.png');
   console.log(texture);
-  var geometry = new THREE.CubeGeometry( 800, 960, 1 );
+  var bg = new THREE.ImageUtils.loadTexture('./img/bg/bg.jpg');
+
+  var geometry = new THREE.CubeGeometry( 960, 800, 1 );
   var material = new THREE.MeshPhongMaterial({                                      
                  map: texture,
                  transparent: true             
