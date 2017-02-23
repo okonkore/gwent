@@ -31,12 +31,17 @@ var main = function () {
   var texture  = new THREE.ImageUtils.loadTexture('./img/3030127000_01.png');
   console.log(texture);
   var bg = new THREE.ImageUtils.loadTexture('./img/bg/bg.jpg');
+  var geometryBg = new THREE.CubeGeometry( 640, 998, 1 );
+  var materialBg = new THREE.MeshPhongMaterial({map: bg});
+  var meshBg = new THREE.Mesh( geometryBg, materialBg );
+  meshBg.position.set(0, 0, -10);
+  scene.add( meshBg );
 
   var geometry = new THREE.CubeGeometry( 960, 800, 1 );
   var material = new THREE.MeshPhongMaterial({                                      
                  map: texture,
                  transparent: true             
-    });
+  });
   var mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
 
