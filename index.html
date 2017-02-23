@@ -30,9 +30,10 @@ var main = function () {
 
   var texture  = new THREE.ImageUtils.loadTexture('./img/3030127000_01.png');
   console.log(texture);
-  var geometry = new THREE.CubeGeometry( 30, 30, 1 );
+  var geometry = new THREE.CubeGeometry( 800, 960, 1 );
   var material = new THREE.MeshPhongMaterial({                                      
-                 map: texture                         
+                 map: texture,
+                 transparent: true             
     });
   var mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
