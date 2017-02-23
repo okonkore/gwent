@@ -44,15 +44,15 @@ var main = function () {
   });
   var mesh = new THREE.Mesh( geometry, material );
   scene.add( mesh );
-
+  var i =0;
   ( function renderLoop () {
     requestAnimationFrame( renderLoop );
-    /*
-    mesh.rotation.set(
+    i+=0.1;
+    camera.position.set(
+      Math.sin(i),
       0,
-      mesh.rotation.y + .01,
-      mesh.rotation.z + .01
-    );*/
+      0
+    );
     renderer.render( scene, camera );
   } )();
 };
