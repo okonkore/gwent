@@ -109,7 +109,7 @@
             var rad = (fov / 2) * Math.PI / 180;
             var z = (w / 2) / Math.tan(rad);
 
-            camera.position.set(0, 20, z);
+            camera.position.set(50 * Math.sin(i / 2), 20, z);
 
             camera.fov = fov;
             camera.updateProjectionMatrix();
