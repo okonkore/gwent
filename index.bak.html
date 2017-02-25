@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>get started with three.js</title>
+</head>
+<body>
+
+<script src="three.js"></script>
+<script>
+var main = function () {
+  var scene = new THREE.Scene();
+
+  var width  = 9 * 48;
+  var height = 16 * 48;
+  var fov    = 60;
+  var aspect = width / height;
+  var near   = 1;
+  var far    = 1000;
+  var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+  camera.position.set( 0, 0, 500 );
+
+  var renderer = new THREE.WebGLRenderer();
+  renderer.setSize( width, height );
+  document.body.appendChild( renderer.domElement );
+
+  var directionalLight = new THREE.DirectionalLight( 0xffffff );
+  directionalLight.position.set( 0, 0, 1 );
+  scene.add( directionalLight );
+
+  var texture  = new THREE.ImageUtils.loadTexture('./img/3030127000_01.png');
+  console.log(texture);
+  var bg = new THREE.ImageUtils.loadTexture('./img/bg/bg.jpg');
+  var geometryBg = new THREE.CubeGeometry( 640, 998, 1 );
+  var materialBg = new THREE.MeshPhongMaterial({map: bg});
+  var meshBg = new THREE.Mesh( geometryBg, materialBg );
+  meshBg.position.set(0, 0, -10);
+  scene.add( meshBg );
+
+  var geometry = new THREE.CubeGeometry( 960, 800, 1 );
+  var material = new THREE.MeshPhongMaterial({                                      
+                 map: texture,
+                 transparent: true             
+  });
+  var mesh = new THREE.Mesh( geometry, material );
+  scene.add( mesh );
+  var i =0;
+  ( function renderLoop () {
+    requestAnimationFrame( renderLoop );
+    i+=0.1;
+    camera.position.set(
+      Math.sin(i),
+      0,
+      0
+    );
+    renderer.render( scene, camera );
+  } )();
+};
+
+window.addEventListener( 'DOMContentLoaded', main, false );
+</script>
+
+</body>
+</html>

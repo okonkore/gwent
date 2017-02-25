@@ -1,63 +1,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>get started with three.js</title>
+    <meta charset="utf-8">
+    <title>get started with three.js</title>
 </head>
 <body>
 
 <script src="three.js"></script>
 <script>
-var main = function () {
-  var scene = new THREE.Scene();
+    var main = function () {
+        // ここにあなたのコードを書いていきます
 
-  var width  = 9 * 48;
-  var height = 16 * 48;
-  var fov    = 60;
-  var aspect = width / height;
-  var near   = 1;
-  var far    = 1000;
-  var camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
-  camera.position.set( 0, 0, 500 );
+        var scene = new THREE.Scene();
 
-  var renderer = new THREE.WebGLRenderer();
-  renderer.setSize( width, height );
-  document.body.appendChild( renderer.domElement );
+        var width = 9 * 48;
+        var height = 16 * 48;
+        var fov = 60;
+        var aspect = width / height;
+        var near = 1;
+        var far = 1000;
+        var camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+        camera.position.set(0, 0, 70);
 
-  var directionalLight = new THREE.DirectionalLight( 0xffffff );
-  directionalLight.position.set( 0, 0, 1 );
-  scene.add( directionalLight );
 
-  var texture  = new THREE.ImageUtils.loadTexture('./img/3030127000_01.png');
-  console.log(texture);
-  var bg = new THREE.ImageUtils.loadTexture('./img/bg/bg.jpg');
-  var geometryBg = new THREE.CubeGeometry( 640, 998, 1 );
-  var materialBg = new THREE.MeshPhongMaterial({map: bg});
-  var meshBg = new THREE.Mesh( geometryBg, materialBg );
-  meshBg.position.set(0, 0, -10);
-  scene.add( meshBg );
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(width, height);
+        document.body.appendChild(renderer.domElement);
 
-  var geometry = new THREE.CubeGeometry( 960, 800, 1 );
-  var material = new THREE.MeshPhongMaterial({                                      
-                 map: texture,
-                 transparent: true             
-  });
-  var mesh = new THREE.Mesh( geometry, material );
-  scene.add( mesh );
-  var i =0;
-  ( function renderLoop () {
-    requestAnimationFrame( renderLoop );
-    i+=0.1;
-    camera.position.set(
-      Math.sin(i),
-      0,
-      0
-    );
-    renderer.render( scene, camera );
-  } )();
-};
+        var directionalLight = new THREE.DirectionalLight(0xffffff);
+        directionalLight.position.set(0, 0, 1);
+        scene.add(directionalLight);
 
-window.addEventListener( 'DOMContentLoaded', main, false );
+        var loader = new THREE.TextureLoader();
+
+        loader.load("./img/3040060000_01.png", function (texture) {
+            console.log(texture); // mesh作成
+            var geo = new THREE.PlaneGeometry(96, 80);
+            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+
+            var box = new THREE.Mesh(geo, mesh);
+            box.position.set(0, 0, 0);
+            scene.add(box);
+        });
+
+        loader.load("./img/3040040000_01.png", function (texture) {
+            console.log(texture); // mesh作成
+            var geo = new THREE.PlaneGeometry(96, 80);
+            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+
+            var box = new THREE.Mesh(geo, mesh);
+            box.position.set(20, 0, -10);
+            scene.add(box);
+        });
+
+        loader.load("./img/3040041000_01.png", function (texture) {
+            console.log(texture); // mesh作成
+            var geo = new THREE.PlaneGeometry(96, 80);
+            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+
+            var box = new THREE.Mesh(geo, mesh);
+            box.position.set(-20, 0, -20);
+            scene.add(box);
+        });
+
+        loader.load("./img/3040043000_01.png", function (texture) {
+            console.log(texture); // mesh作成
+            var geo = new THREE.PlaneGeometry(96, 80);
+            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+
+            var box = new THREE.Mesh(geo, mesh);
+            box.position.set(40, 0, -30);
+            scene.add(box);
+        });
+
+        loader.load("./img/3040044000_01.png", function (texture) {
+            console.log(texture); // mesh作成
+            var geo = new THREE.PlaneGeometry(96, 80);
+            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+
+            var box = new THREE.Mesh(geo, mesh);
+            box.position.set(-40, 0, -40);
+            scene.add(box);
+        });
+
+        loader.load("./img/3040070000_01.png", function (texture) {
+            console.log(texture); // mesh作成
+            var geo = new THREE.PlaneGeometry(96, 80);
+            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+
+            var box = new THREE.Mesh(geo, mesh);
+            box.position.set(60, 0, -50);
+            scene.add(box);
+        });
+
+        var geo = new THREE.BoxGeometry(999999, 1, 999999);
+        var mesh = new THREE.MeshPhongMaterial({color: 0xAAAA34, transparent: true});
+        var box = new THREE.Mesh(geo, mesh);
+        box.position.set(0, -41, 0);
+        scene.add(box);
+
+        (function renderLoop() {
+            i = i + 0.01;
+            requestAnimationFrame(renderLoop);
+            var w = 96 * 2;
+            var fov = 90 - (Math.cos(i) * 60);
+            var rad = (fov / 2) * Math.PI / 180;
+            var z = (w / 2) / Math.tan(rad);
+
+            camera.position.set(0, 20, z);
+
+            camera.fov = fov;
+            camera.updateProjectionMatrix();
+
+            // camera.lookAt({x:0,y:0,z:0});
+            renderer.render(scene, camera);
+        })();
+    };
+    var i = 0;
+    window.addEventListener('DOMContentLoaded', main, false);
 </script>
 
 </body>
