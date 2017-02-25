@@ -93,11 +93,13 @@
             scene.add(box);
         });
 
-        var geo = new THREE.BoxGeometry(999999, 1, 999999);
-        var mesh = new THREE.MeshPhongMaterial({color: 0xAAAA34, transparent: true});
-        var box = new THREE.Mesh(geo, mesh);
-        box.position.set(0, -41, 0);
-        scene.add(box);
+        loader.load("./img/bg/UV_Grid_Sm.jpg", function (texture) {
+            var geo = new THREE.BoxGeometry(1024, 1, 1024);
+            var mesh = new THREE.MeshPhongMaterial({map: texture});
+            var box = new THREE.Mesh(geo, mesh);
+            box.position.set(0, -41, 0);
+            scene.add(box);
+        });
 
         (function renderLoop() {
             i = i + 0.01;
