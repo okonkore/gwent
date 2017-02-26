@@ -12,7 +12,7 @@
         this.i = 0;
         this.unitList = [];
         this.unitPosition = {};
-        this.positionList = [1, 1, -1, -1];
+        this.positionList = [0.2, 0.2, 0.2, 0.2, -0.2, -0.2, -0.2, -0.2];
         this.shiver = function(){
             this.i++;
             for(var j = 0; j < this.unitList.length; j++){
@@ -99,19 +99,19 @@
             shiver.addUnitList(a);
         });
 
-        var b = new Unit("./img/3040040000_01.png");
-        b.load(function(){
-            var mesh = b.getMesh();
-            mesh.position.set(20, 0, -10);
-            scene.add(mesh);
-        });
+        // var b = new Unit("./img/3040040000_01.png");
+        // b.load(function(){
+        //     var mesh = b.getMesh();
+        //     mesh.position.set(20, 0, -10);
+        //     scene.add(mesh);
+        // });
 
-        var c = new Unit("./img/3040043000_01.png");
-        c.load(function(){
-            var mesh = c.getMesh();
-            mesh.position.set(-20, 0, -20);
-            scene.add(mesh);
-        });
+        // var c = new Unit("./img/3040043000_01.png");
+        // c.load(function(){
+        //     var mesh = c.getMesh();
+        //     mesh.position.set(-20, 0, -20);
+        //     scene.add(mesh);
+        // });
 
         var d = new Unit("./img/3040044000_01.png");
         d.load(function(){
@@ -127,12 +127,12 @@
             scene.add(mesh);
         });
 
-        var f = new Unit("./img/3040070000_01.png");
-        f.load(function(){
-            var mesh = f.getMesh();
-            mesh.position.set(60, 0, -50);
-            scene.add(mesh);
-        });
+        // var f = new Unit("./img/3040070000_01.png");
+        // f.load(function(){
+        //     var mesh = f.getMesh();
+        //     mesh.position.set(60, 0, -50);
+        //     scene.add(mesh);
+        // });
 
         var loader = new THREE.TextureLoader();
         loader.load("./img/bg/UV_Grid_Sm.jpg", function (texture) {
