@@ -103,6 +103,7 @@
             scene.add(mesh);
         });
 
+        var loader = new THREE.TextureLoader();
         loader.load("./img/bg/UV_Grid_Sm.jpg", function (texture) {
             var geo = new THREE.BoxGeometry(640, 1, 640);
             var mesh = new THREE.MeshPhongMaterial({map: texture});
