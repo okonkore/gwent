@@ -8,9 +8,24 @@
 
 <script src="three.js"></script>
 <script>
-    var Game = function(){
-
+    var Shiver = function(){
+        this.i = 0;
+        this.unitList = [];
+        this.shiver = function(){
+            this.i++;
+            for(var j = 0; j < this.unitList.length; j++){
+                var unit = this.unitList[j];
+                var mesh = unit.getMesh();
+                mesh.position.x = mesh.position.x + Math.sin(this.i);
+            }
+        };
+        this.addUnitList = new function(unit){
+            this.unitList.push(unit);
+        };
     };
+
+    var shiver = new Shiver();
+
     var CameraAnimation = function(camera){
         this.camera = camera;
         this.moveTo = function(){
@@ -67,6 +82,7 @@
             mesh.position.set(0, 0, 0);
             scene.add(mesh);
         });
+        shiver.addUnitList(a);
 
         var b = new Unit("./img/3040040000_01.png");
         b.load(function(){
@@ -135,6 +151,8 @@
             camera.updateProjectionMatrix();
 
             // camera.lookAt({x:0,y:0,z:0});
+            shiver.shiver();
+
             renderer.render(scene, camera);
         })();
     };
