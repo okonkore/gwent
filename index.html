@@ -95,8 +95,8 @@
             var mesh = a.getMesh();
             mesh.position.set(0, 0, 0);
             scene.add(mesh);
+            shiver.addUnitList(a);
         });
-        shiver.addUnitList(a);
 
         var b = new Unit("./img/3040040000_01.png");
         b.load(function(){
