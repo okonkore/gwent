@@ -8,6 +8,23 @@
 
 <script src="three.js"></script>
 <script>
+    var CameraAnimation = function(camera){
+        this.camera = camera;
+        this.moveTo = function(){
+            
+        };
+    };
+    var Unit = function(image){
+        this.image = image;
+        this.mesh = null;
+        this.load = function(callback){
+            console.log(this);
+            callback();
+        };
+        this.getMesh = function(){
+            return this.mesh;
+        }
+    };
     var main = function () {
         // ここにあなたのコードを書いていきます
 
@@ -30,6 +47,10 @@
         var directionalLight = new THREE.DirectionalLight(0xffffff);
         directionalLight.position.set(0, 1, 1);
         scene.add(directionalLight);
+
+        var a = new Unit("./img/3040060000_01.png");
+        a.load(function(){
+        });
 
         var loader = new THREE.TextureLoader();
 
