@@ -12,16 +12,13 @@
         this.i = 0;
         this.unitList = [];
         this.unitPosition = {};
+        this.positionList = [1, 1, -1, -1];
         this.shiver = function(){
             this.i++;
             for(var j = 0; j < this.unitList.length; j++){
                 var unit = this.unitList[j];
                 var mesh = unit.getMesh();
-                if(this.i % 2 == 0){
-                    mesh.position.x = this.unitPosition[unit].x + 1;
-                }else{
-                    mesh.position.x = this.unitPosition[unit].x - 1;
-                }
+                mesh.position.x = this.unitPosition[unit].x + this.positionList[this.i % this.positionList.length];
             }
         };
         this.addUnitList = function(unit){
