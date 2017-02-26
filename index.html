@@ -68,66 +68,39 @@
             scene.add(mesh);
         });
 
-        var loader = new THREE.TextureLoader();
-
-        // loader.load("./img/3040060000_01.png", function (texture) {
-        //     console.log(texture); // mesh作成
-        //     var geo = new THREE.PlaneGeometry(96, 80);
-        //     var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
-
-        //     var box = new THREE.Mesh(geo, mesh);
-        //     box.position.set(0, 0, 0);
-        //     scene.add(box);
-        // });
-
-        loader.load("./img/3040040000_01.png", function (texture) {
-            console.log(texture); // mesh作成
-            var geo = new THREE.PlaneGeometry(96, 80);
-            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
-
-            var box = new THREE.Mesh(geo, mesh);
-            box.position.set(20, 0, -10);
-            scene.add(box);
+        var b = new Unit("./img/3040040000_01.png");
+        b.load(function(){
+            var mesh = b.getMesh();
+            mesh.position.set(20, 0, -10);
+            scene.add(mesh);
         });
 
-        loader.load("./img/3040041000_01.png", function (texture) {
-            console.log(texture); // mesh作成
-            var geo = new THREE.PlaneGeometry(96, 80);
-            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
-
-            var box = new THREE.Mesh(geo, mesh);
-            box.position.set(-20, 0, -20);
-            scene.add(box);
+        var c = new Unit("./img/3040043000_01.png");
+        c.load(function(){
+            var mesh = c.getMesh();
+            mesh.position.set(-20, 0, -20);
+            scene.add(mesh);
         });
 
-        loader.load("./img/3040043000_01.png", function (texture) {
-            console.log(texture); // mesh作成
-            var geo = new THREE.PlaneGeometry(96, 80);
-            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
-
-            var box = new THREE.Mesh(geo, mesh);
-            box.position.set(40, 0, -30);
-            scene.add(box);
+        var d = new Unit("./img/3040044000_01.png");
+        d.load(function(){
+            var mesh = d.getMesh();
+            mesh.position.set(40, 0, -30);
+            scene.add(mesh);
         });
 
-        loader.load("./img/3040044000_01.png", function (texture) {
-            console.log(texture); // mesh作成
-            var geo = new THREE.PlaneGeometry(96, 80);
-            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
-
-            var box = new THREE.Mesh(geo, mesh);
-            box.position.set(-40, 0, -40);
-            scene.add(box);
+        var e = new Unit("./img/3040044000_01.png");
+        e.load(function(){
+            var mesh = e.getMesh();
+            mesh.position.set(-40, 0, -40);
+            scene.add(mesh);
         });
 
-        loader.load("./img/3040070000_01.png", function (texture) {
-            console.log(texture); // mesh作成
-            var geo = new THREE.PlaneGeometry(96, 80);
-            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
-
-            var box = new THREE.Mesh(geo, mesh);
-            box.position.set(60, 0, -50);
-            scene.add(box);
+        var f = new Unit("./img/3040070000_01.png");
+        f.load(function(){
+            var mesh = f.getMesh();
+            mesh.position.set(60, 0, -50);
+            scene.add(mesh);
         });
 
         loader.load("./img/bg/UV_Grid_Sm.jpg", function (texture) {
