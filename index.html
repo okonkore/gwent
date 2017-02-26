@@ -11,16 +11,22 @@
     var Shiver = function(){
         this.i = 0;
         this.unitList = [];
+        this.unitPosition = {};
         this.shiver = function(){
             this.i++;
             for(var j = 0; j < this.unitList.length; j++){
                 var unit = this.unitList[j];
                 var mesh = unit.getMesh();
-                mesh.position.x = mesh.position.x + Math.sin(this.i);
+                mesh.position.x = this.unitPosition[unit].x + Math.sin(this.i);
             }
         };
         this.addUnitList = function(unit){
             this.unitList.push(unit);
+            this.unitPosition[unit] = {
+                'x' : unit.getMesh().position.x,
+                'y' : unit.getMesh().position.y,
+                'z' : unit.getMesh().position.z
+            };
         };
     };
 
@@ -35,6 +41,9 @@
     var Unit = function(image){
         this.image = image;
         this.mesh = null;
+        this.x;
+        this.y;
+        this.z;
         this.load = function(callback){
             console.log(this);
             var unit = this;
@@ -51,7 +60,12 @@
         };
         this.getMesh = function(){
             return this.mesh;
-        }
+        };
+        this.setPosition = function(x, y, z){
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        };
     };
     var main = function () {
         // ここにあなたのコードを書いていきます
