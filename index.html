@@ -30,8 +30,8 @@
                 var geo = new THREE.PlaneGeometry(96, 80);
                 var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
                 var box = new THREE.Mesh(geo, mesh);
-                box.position.set(0, 0, 0);
-                scene.add(box);
+                unit.mesh = box;
+                callback(unit);
             });
         };
         this.getMesh = function(){
@@ -63,19 +63,22 @@
 
         var a = new Unit("./img/3040060000_01.png");
         a.load(function(){
+            var mesh = a.getMesh();
+            mesh.position.set(0, 0, 0);
+            scene.add(mesh);
         });
 
         var loader = new THREE.TextureLoader();
 
-        loader.load("./img/3040060000_01.png", function (texture) {
-            console.log(texture); // mesh作成
-            var geo = new THREE.PlaneGeometry(96, 80);
-            var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+        // loader.load("./img/3040060000_01.png", function (texture) {
+        //     console.log(texture); // mesh作成
+        //     var geo = new THREE.PlaneGeometry(96, 80);
+        //     var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
 
-            var box = new THREE.Mesh(geo, mesh);
-            box.position.set(0, 0, 0);
-            scene.add(box);
-        });
+        //     var box = new THREE.Mesh(geo, mesh);
+        //     box.position.set(0, 0, 0);
+        //     scene.add(box);
+        // });
 
         loader.load("./img/3040040000_01.png", function (texture) {
             console.log(texture); // mesh作成
