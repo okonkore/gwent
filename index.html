@@ -8,6 +8,9 @@
 
 <script src="three.js"></script>
 <script>
+    var Game = function(){
+
+    };
     var CameraAnimation = function(camera){
         this.camera = camera;
         this.moveTo = function(){
@@ -19,7 +22,17 @@
         this.mesh = null;
         this.load = function(callback){
             console.log(this);
-            callback();
+            var unit = this;
+            var loader = new THREE.TextureLoader();
+            loader.load(this.image, function (texture) {
+                console.log(this);
+                console.log(unit);
+                var geo = new THREE.PlaneGeometry(96, 80);
+                var mesh = new THREE.MeshPhongMaterial({map: texture, transparent: true});
+                var box = new THREE.Mesh(geo, mesh);
+                box.position.set(0, 0, 0);
+                scene.add(box);
+            });
         };
         this.getMesh = function(){
             return this.mesh;
