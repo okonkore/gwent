@@ -17,7 +17,11 @@
             for(var j = 0; j < this.unitList.length; j++){
                 var unit = this.unitList[j];
                 var mesh = unit.getMesh();
-                mesh.position.x = this.unitPosition[unit].x + Math.sin(this.i);
+                if(this.i % 2 == 0){
+                    mesh.position.x = this.unitPosition[unit].x + 1;
+                }else{
+                    mesh.position.x = this.unitPosition[unit].x - 1;
+                }
             }
         };
         this.addUnitList = function(unit){
